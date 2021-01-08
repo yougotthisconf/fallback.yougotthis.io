@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Got This Live: Fallback</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: black; color: white; }
+        header { background: rgb(31, 41, 55); padding: 1em; display: flex; flex-direction: row; justify-content: flex-start; border-bottom: 1px solid grey; }
+        a { color: white; text-decoration: none; }
+        a.brand { margin-right: auto; font-weight: bold; }
+        a:not(.brand) { margin-left: 1em; }
+        #app { height: 100vh; display: flex; flex-direction: column; }
+        video { flex: 1; }
+        @media screen and (max-width: 600px) {
+            header { display: block; }
+            a.brand { display: block; }
+            a:not(.brand) { margin-left: 0; margin-right: 0.5em; margin-top: 0.5em; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <a href="https://yougotthis.io" class="brand">You Got This</a>
+            <a href="https://yougotthis.io/couch">Schedule</a>
+            <a href="https://www.streamtext.net/player?event=YouGotThisFromYourCouch">Captions</a>
+            <a href="https://yougotthis.io/discord">Discord</a>
+        </header>
+        <video controls muted autoplay></video>
+    </div>
+
+    <script src="hls.js"></script>
+    <script>
+        const source = 'https://stream.mux.com/eHqNNRL1QAeh02iPu00gLMvK9MeAvllw02k01FdFptTkqPY.m3u8'
+        const video = document.querySelector('video')
+        if(!Hls.isSupported()) {
+            video.src = source
+        } else {
+            let hls = new Hls();
+            hls.loadSource(source);
+            hls.attachMedia(video);
+            window.hls = hls;
+        }
+    </script>
+</body>
+</html>
