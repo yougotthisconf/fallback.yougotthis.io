@@ -13,10 +13,12 @@
         a:not(.brand) { margin-left: 1em; }
         #app { height: 100vh; display: flex; flex-direction: column; }
         video { flex: 1; }
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 800px) {
             header { display: block; }
             a.brand { display: block; }
             a:not(.brand) { margin-left: 0; margin-right: 0.5em; margin-top: 0.5em; display: inline-block; }
+            #app { height: auto; display: block; }
+            video { width: 100%; }
         }
     </style>
 </head>
